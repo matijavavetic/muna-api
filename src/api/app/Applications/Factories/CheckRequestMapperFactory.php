@@ -8,6 +8,9 @@ class CheckRequestMapperFactory
 {
     public static function make(array $data): CheckRequestMapper
     {
-        return new CheckRequestMapper($data['value']);
+        return new CheckRequestMapper(
+            $data['value'],
+            $data['userId']
+        );
     }
 }

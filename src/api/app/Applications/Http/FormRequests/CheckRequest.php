@@ -17,7 +17,8 @@ class CheckRequest extends FormRequest
     public function validationData(): array
     {
         return [
-            'value' => $this->input('value')
+            'value' => $this->input('value'),
+            'userId' => $this->input('userId')
         ];
     }
 }
