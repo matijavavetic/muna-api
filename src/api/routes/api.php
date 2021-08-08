@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use src\Applications\Http\Controllers\GuessingGameController;
+use src\Applications\Http\Controllers\PatternCheckerController;
 
 Route::group(['middleware' => 'api'], function () {
-    Route::post('check', [GuessingGameController::class, 'check']);
-    Route::post('stat', [GuessingGameController::class, 'stat']);
+    Route::post('check', [PatternCheckerController::class, 'check']);
+    Route::post('stat', [PatternCheckerController::class, 'stat']);
 });
