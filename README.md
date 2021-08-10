@@ -3,7 +3,7 @@
 ## Installation
 #### Clone the repository
 ```
-git clone https://github.com/matijavavetic/tq-api.git
+git clone https://github.com/matijavavetic/project-muna.git
 ```
 
 #### Build docker images and run the containers
