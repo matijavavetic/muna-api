@@ -6,9 +6,10 @@
 git clone https://github.com/matijavavetic/tq-api.git
 ```
 
-#### Install docker images, up the containers & run local UI server
+#### Build docker images and run the containers
 ```
-make setup
+docker-compose build
+docker-compose up -d
 ```
 
 #### Create .env file in src/api:
@@ -17,10 +18,11 @@ cd src/api
 cp .env.example .env
 ```
 
-#### SSH inside the API container and install packages:
+#### SSH inside the API container, install packages and run migrations:
 ```
-make api-ssh
+docker container exec -it project-muna_muna-api_1 sh
 composer install
+php artisan doctrine:migrations:migrate
 ```
 #### Run tests in API container
 ```
