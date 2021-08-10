@@ -34,5 +34,5 @@ php artisan doctrine:migrations:migrate
 #### Available API endpoints
 ```
 muna.localhost/api/check -> accepts string and checks for patterns
-muna.localhost/api/stat  -> shows current state of game and previous attempts 
+muna.localhost/api/stat  -> shows current state of the game and previous attempts 
 ```
