@@ -4,13 +4,14 @@ namespace src\Data\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * @ORM\Entity
  * @ORM\Table
  * @ORM\HasLifecycleCallbacks
  */
-class Info
+class Info implements EntityInterface
 {
     /**
      * @ORM\Id
@@ -26,13 +27,18 @@ class Info
 
     /**
     * @ORM\OneToMany(targetEntity="HistoryItem", mappedBy="info", cascade={"persist"})
-    * @var ArrayCollection|HistoryItem[]
+    * @var ArrayCollection
     */
-    private ArrayCollection $historyItems;
+    private $historyItems;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private string $userId;
 
     public function __construct()
     {
-        $this->historyItems = new ArrayCollection();
+        $this->historyItems = new ArrayCollection;
     }
 
     public function getId(): int
@@ -63,5 +69,17 @@ class Info
     public function getHistoryItems(): ArrayCollection
     {
         return $this->historyItems;
+    }
+
+    public function getUserId(): string
+    {
+        return $this->userId;
+    }
+
+    public function setUserId(string $userId): self
+    {
+        $this->userId = $userId;
+
+        return $this;
     }
 }

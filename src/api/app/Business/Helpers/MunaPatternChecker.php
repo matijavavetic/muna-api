@@ -3,6 +3,8 @@
 namespace src\Business\Helpers;
 
 use src\Applications\Enums\StateEnum;
+use src\Data\Entities\HistoryItem;
+use src\Data\Entities\Info;
 
 class MunaPatternChecker implements PatternCheckerInterface
 {
@@ -75,7 +77,25 @@ class MunaPatternChecker implements PatternCheckerInterface
     {
         if (
             ! isset($this->vowels[$value[0]])
-            || ! isset($this->vowels[$value[1]])) {
+            || ! isset($this->vowels[$value[1]])
+        ) {
+            return true;
+        }
+
+        if ($this->checkIfThirdIsNotVowelOrBOrHash($value[2])) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private function checkIfThirdIsNotVowelOrBOrHash(string $thirdCharacter): bool
+    {
+        if (
+            $thirdCharacter !== 'b' 
+            && $thirdCharacter !== '#' 
+            && ! isset($this->vowels[$thirdCharacter])
+        ) {
             return true;
         }
 

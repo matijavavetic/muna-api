@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table
  * @ORM\HasLifecycleCallbacks
  */
-class HistoryItem
+class HistoryItem implements EntityInterface
 {
     /**
      * @ORM\Id
@@ -58,7 +58,7 @@ class HistoryItem
 
     public function setValue(string $value): self
     {
-        $this->episodeId = $value;
+        $this->value = $value;
 
         return $this;
     }
