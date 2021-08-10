@@ -72,16 +72,16 @@ class PatternCheckerService
 
     public function stat(StatRequestMapper $mapper): StatResponseMapper
     {
-        $cachedInfo = $this->cacheInterface->findInfoByUserId($mapper->getUserId());
+        $info = $this->cacheInterface->findInfoByUserId($mapper->getUserId());
 
-        if (empty($cachedInfo)) {
+        if (! $info) {
             throw new NotFoundException(
                 'No game info related to your id found.',
                 Response::HTTP_NOT_FOUND
             );
         }
 
-        $responseMapper = StatResponseMapperFactory::make($cachedInfo);
+        $responseMapper = StatResponseMapperFactory::make($info);
 
         return $responseMapper;
     }

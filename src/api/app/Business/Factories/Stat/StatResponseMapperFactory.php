@@ -4,31 +4,26 @@ namespace src\Business\Factories\Stat;
 
 use src\Business\Mappers\Stat\HistoryItemMapper;
 use src\Business\Mappers\Stat\Response\StatResponseMapper;
+use src\Data\Entities\Info;
 use src\Data\Mappers\HistoryItemMapperCollection;
 
 class StatResponseMapperFactory
 {
-    public static function make(array $data): StatResponseMapper
+    public static function make(Info $info): StatResponseMapper
     {
         $historyMapperCollection = new HistoryItemMapperCollection();
 
-        $infoState = $data[0];
-
-        unset($data[0]);
-
-        foreach ($data as $historyItem) {
-            $historyItemJsonToArray = json_decode($historyItem, true);
-
+        foreach ($info->getHistoryItems() as $historyItem) {
             $historyItemMapper = new HistoryItemMapper(
-                $historyItemJsonToArray['time'],
-                $historyItemJsonToArray['value']
+                $historyItem->getTime()->format('Y-m-d H:i:s'),
+                $historyItem->getValue()
             );
 
             $historyMapperCollection->set($historyItemMapper);
         }
 
         $responseMapper = new StatResponseMapper(
-            $infoState,
+            $info->getSolved() ? 'true' : 'false',
             $historyMapperCollection
         );
 
