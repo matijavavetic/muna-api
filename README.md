@@ -31,3 +31,8 @@ php artisan doctrine:migrations:migrate
 ./vendor/bin/phpunit --group integration
 ./vendor/bin/phpunit --group functional
 ```
+#### Available API endpoints
+```
+muna.localhost/api/check -> accepts string and checks for patterns
+muna.localhost/api/stat  -> shows current state of game and previous attempts 
+```
