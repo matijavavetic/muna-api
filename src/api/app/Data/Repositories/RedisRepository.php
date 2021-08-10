@@ -1,16 +1,22 @@
 <?php
 
-namespace src\Data\Storage;
+namespace src\Data\Repositories;
 
 use Illuminate\Support\Facades\Redis;
 use src\Data\Entities\HistoryItem;
+use src\Data\Repositories\Contracts\CacheInterface;
 
-class RedisStorage implements CacheInterface
+class RedisRepository implements CacheInterface
 {
+    public function findInfoByUserId(string $userId): array
+    {
+        return Redis::lrange($userId, 0, -1);
+    }
+
     public function attachHistoryItemToInfo(string $userId, HistoryItem $historyItem): void
     {
         Redis::rpush($userId, json_encode([
-            'time' => $historyItem->getTime(),
+            'time' => $historyItem->getTime()->format('Y-m-d H:i:s'),
             'value' => $historyItem->getValue()
         ]));
     }

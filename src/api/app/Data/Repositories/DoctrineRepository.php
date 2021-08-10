@@ -1,12 +1,12 @@
 <?php
 
-namespace src\Data\Storage;
+namespace src\Data\Repositories;
 
-use src\Data\Entities\EntityInterface;
+use src\Data\Entities\Contracts\EntityInterface;
 use src\Data\Entities\Info;
-use src\Data\Storage\RepositoryInterface;
+use src\Data\Repositories\Contracts\RepositoryInterface;
 
-class SqlStorage extends AbstractRepository implements RepositoryInterface
+class DoctrineRepository extends AbstractRepository implements RepositoryInterface
 {
     public function fetchInfoByUserId(string $userId): ?Info
     {
@@ -22,7 +22,7 @@ class SqlStorage extends AbstractRepository implements RepositoryInterface
         return $info;
     }
 
-    public function save(EntityInterface $entity): ?EntityInterface
+    public function save(EntityInterface $entity): EntityInterface
     {
         $this->em->persist($entity);
         $this->em->flush();

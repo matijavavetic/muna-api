@@ -4,6 +4,7 @@ namespace src\Data\Entities;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use src\Data\Entities\Contracts\EntityInterface;
 
 /**
  * @ORM\Entity

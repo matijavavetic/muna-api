@@ -4,12 +4,17 @@ namespace src\Business\Services;
 
 use DateTime;
 use Illuminate\Support\Facades\Cookie;
-use src\Business\Helpers\PatternCheckerInterface;
+use src\Business\Exceptions\NotFoundException;
+use src\Business\Factories\Stat\StatResponseMapperFactory;
+use src\Business\Helpers\Contracts\PatternCheckerInterface;
 use src\Business\Mappers\Check\Request\CheckRequestMapper;
+use src\Business\Mappers\Stat\Request\StatRequestMapper;
+use src\Business\Mappers\Stat\Response\StatResponseMapper;
 use src\Data\Entities\HistoryItem;
 use src\Data\Entities\Info;
-use src\Data\Storage\CacheInterface;
-use src\Data\Storage\RepositoryInterface;
+use src\Data\Repositories\Contracts\CacheInterface;
+use src\Data\Repositories\Contracts\RepositoryInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class PatternCheckerService
 {
@@ -19,7 +24,7 @@ class PatternCheckerService
         private CacheInterface $cacheInterface
     ) {}
 
-    public function check(CheckRequestMapper $mapper)
+    public function check(CheckRequestMapper $mapper): bool
     {
         $patternCheckerResult = $this->patternCheckerInterface->check($mapper->getValue());
 
@@ -63,5 +68,21 @@ class PatternCheckerService
         }
 
         return $patternCheckerResult;
+    }
+
+    public function stat(StatRequestMapper $mapper): StatResponseMapper
+    {
+        $cachedInfo = $this->cacheInterface->findInfoByUserId($mapper->getUserId());
+
+        if (empty($cachedInfo)) {
+            throw new NotFoundException(
+                'No game info related to your id found.',
+                Response::HTTP_NOT_FOUND
+            );
+        }
+
+        $responseMapper = StatResponseMapperFactory::make($cachedInfo);
+
+        return $responseMapper;
     }
 }

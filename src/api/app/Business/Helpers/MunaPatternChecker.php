@@ -3,8 +3,7 @@
 namespace src\Business\Helpers;
 
 use src\Applications\Enums\StateEnum;
-use src\Data\Entities\HistoryItem;
-use src\Data\Entities\Info;
+use src\Business\Helpers\Contracts\PatternCheckerInterface;
 
 class MunaPatternChecker implements PatternCheckerInterface
 {
