@@ -1,6 +1,6 @@
 <?php
 
-namespace src\Business\Helpers;
+namespace src\Business\Helpers\Contracts;
 
 interface PatternCheckerInterface
 {

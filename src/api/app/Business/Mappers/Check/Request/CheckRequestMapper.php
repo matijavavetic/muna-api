@@ -4,16 +4,10 @@ namespace src\Business\Mappers\Check\Request;
 
 class CheckRequestMapper
 {
-    private string $value;
-    private string $userId;
-
     public function __construct(
-        string $value,
-        string $userId
-    ) {
-        $this->value = $value;
-        $this->userId = $userId;
-    }
+        private string $value,
+        private string $userId
+    ) {}
 
     public function getValue(): string
     {

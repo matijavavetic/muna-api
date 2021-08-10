@@ -4,13 +4,14 @@ namespace src\Data\Entities;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use src\Data\Entities\Contracts\EntityInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table
  * @ORM\HasLifecycleCallbacks
  */
-class HistoryItem
+class HistoryItem implements EntityInterface
 {
     /**
      * @ORM\Id
@@ -58,7 +59,7 @@ class HistoryItem
 
     public function setValue(string $value): self
     {
-        $this->episodeId = $value;
+        $this->value = $value;
 
         return $this;
     }

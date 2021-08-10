@@ -14,9 +14,6 @@
         <testsuite name="Functional">
             <directory suffix="Test.php">./tests/Functional</directory>
         </testsuite>
-        <testsuite name="Fixtures">
-            <directory suffix="Test.php">./tests/Fixtures</directory>
-        </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
         <include>
