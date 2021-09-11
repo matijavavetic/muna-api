@@ -18,6 +18,10 @@ class AttachIdentifierToRequest
      */
     public function handle($request, Closure $next, ...$guards)
     {
+        if ($request->input('userId') !== null) {
+            return $next($request);
+        }
+
         $input = $request->all();
         $userUuid = '';
 

@@ -9,6 +9,7 @@ class CheckRequest extends FormRequest
         return [
             'value' => [
                 'string',
+                'min:3',
                 'max:100'
             ],
         ];
@@ -17,7 +18,7 @@ class CheckRequest extends FormRequest
     public function validationData(): array
     {
         return [
-            'value' => $this->input('value'),
+            'value'  => $this->input('value'),
             'userId' => $this->input('userId')
         ];
     }

@@ -24,6 +24,7 @@ class HistoryItemMapper implements JsonSerializable
     public function jsonSerialize()
     {
         return [
+            'state' => null,
             'time' => $this->time,
             'value' => $this->value,
         ];

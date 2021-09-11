@@ -23,7 +23,9 @@ class PatternCheckerController extends Controller
 
         $responseMapper = $patternCheckerService->check($requestMapper);
 
-        return new JsonResponse($responseMapper, Response::HTTP_OK);
+        $response['state'] = $responseMapper;
+
+        return new JsonResponse([$response], Response::HTTP_OK);
     }
 
     public function stat(

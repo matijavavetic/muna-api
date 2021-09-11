@@ -14,9 +14,6 @@ class StatResponseMapper implements JsonSerializable
 
     public function jsonSerialize()
     {
-        return [
-            'state' => $this->state,
-            'history' => $this->historyItems
-        ];
+        return $this->historyItems;
     }
 }
