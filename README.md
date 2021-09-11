@@ -1,4 +1,4 @@
-# Project Muna
+# Muna API
 
 Algorithm which checks user's input for a pattern. The pattern to be searched for is defined as follows.
 
