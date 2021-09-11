@@ -1,6 +1,6 @@
 # Project Muna
 
-Game which checks user's input for certain patterns. The pattern to be searched for is defined as follows.
+Game which checks user's input for a pattern. The pattern to be searched for is defined as follows.
 
 X = [a, e, i, o, u]
 
